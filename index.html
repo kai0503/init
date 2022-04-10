@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/common.css" rel="stylesheet" >
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+    <script src="./layui/layui.js" charset="utf-8"></script>
+    <script src="./js/goodList.js"></script>
+   
+    <script src="./jquery.js"></script>
+   
+    <nav>
+        <div class="clearfix nav-div w">
+            <div class="nav-left">
+                <img src="http://49.232.47.192:9527/img/logo.57933597.png">
+            </div>
+            
+            <div class="clear"></div>
+            <ul class="login">
+                <div class="navs-left">
+                <li><a href="./index.html">首页</a></li>
+                <li><a href="./login.html">登录</a></li>
+                <li><a href="./register.html">注册</a></li>
+                </div>
+                <div class="nav-right">
+                    <input type="text" placeholder="请输入想要的商品" id="productname">
+                    <input type="button" value="搜索" id="search">
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <div class="clear"></div>
+    <div class="navation w"></div>
+    <div class="tap w">
+        <div class="banner w">
+            <div class="layui-carousel" id="test1" lay-filter="test1">
+                <div carousel-item="">
+                    <div><img src="./assets/images/a.jpg"></div>
+                    <div><img src="./assets/images/b.jpg"></div>
+                    <div><img src="./assets/images/c.jpg">
+                    </div>
+                    <div><img src="./assets/images/d.jpg"></div>
+                    <div><img src="./assets/images/e.jpg"></div>
+                </div>
+            </div>
+        </div>
+      <div class="li w">
+        <div class="w list">
+            <div class='item'>
+                <img src="${data[i].img_list_url}" id="img">
+                <p>${data[i].title}</p>
+                <span class="title">${data[i].type_one}</span><span class="title">${data[i].type_two}</span>${data[i].mack}
+                <p class="price">价格: <span>${data[i].price}</span>元</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <button class="btn">返回顶部</button>
+    <script>
+        layui.use(['carousel', 'form'], function () {
+    var carousel = layui.carousel,
+        form = layui.form;
+
+    //常规轮播
+    carousel.render({
+        elem: '#test1',
+        arrow: 'always',
+        width: '1200px',
+        height: '500px'
+    });
+
+    //改变下时间间隔、动画类型、高度
+    carousel.render({
+        elem: '#test2',
+        interval: 1800,
+        anim: 'fade',
+        height: '120px'
+    });
+
+    //设定各种参数
+    var ins3 = carousel.render({
+        elem: '#test3'
+    });
+    //图片轮播
+    carousel.render({
+        elem: '#test10',
+        width: '1200px',
+        height: '500px',
+        interval: 5000
+    });
+
+    //事件
+    carousel.on('change(test4)', function (res) {
+        console.log(res)
+    });
+
+    var $ = layui.$,
+        active = {
+            set: function (othis) {
+                var THIS = 'layui-bg-normal',
+                    key = othis.data('key'),
+                    options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+    //监听开关
+    form.on('switch(autoplay)', function () {
+        ins3.reload({
+            autoplay: this.checked
+        });
+    });
+
+    $('.demoSet').on('keyup', function () {
+        var value = this.value,
+            options = {};
+        if (!/^\d+$/.test(value)) return;
+
+        options[this.name] = value;
+        ins3.reload(options);
+    });
+
+    //其它示例
+    $('.demoTest .layui-btn').on('click', function () {
+        var othis = $(this),
+            type = othis.data('type');
+        active[type] ? active[type].call(this, othis) : '';
+    });
+});
+    </script>
+     <script src="./js/index.js"></script>
+</body>
+</html>

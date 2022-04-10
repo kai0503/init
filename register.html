@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/common.css" rel="stylesheet" >
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/login.css" rel="stylesheet">
+</head>
+<body>
+    <script src="./jquery.js"></script>
+    <!-- <script src="./js/login.js"></script> -->
+    <nav>
+        <div class="clearfix nav-div w">
+            <div class="nav-left">
+                <img src="http://49.232.47.192:9527/img/logo.57933597.png">
+            </div>
+            
+            <div class="clear"></div>
+            <ul class="login">
+              
+                <div class="navs-left">
+                <li><a href="./index.html">首页</a></li>
+                <li><a href="./login.html">登录</a></li>
+                <li><a href="./register.html">注册</a></li>
+                </div>
+                <div class="nav-right">
+                    <input type="text" placeholder="请输入想要的商品" id="productname">
+                    <input type="button" value="搜索" id="search">
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <div class="clear"></div>
+    <div class="w form">
+        <input type="text" placeholder="用户名" id="name"><span id="yan"></span>
+        <input type="password" placeholder="密码" id="password"><span id="zheng"></span>
+        <input type="button" value="注册" id="btn">
+    </div>
+    <script>
+         function deng() {
+    var flag=true
+   $('#btn').on('click',function(){
+    if(!flag){
+        return
+    }
+   
+    var str =/\w{6,8}/g
+  var userval=$('#name').val() 
+var pasval=$('#password').val()
+
+
+
+    if (userval.length > 8 || userval.length < 6) {
+        $('#yan').html('请输入长度6-8的字体')
+        $('#yan').css({
+            fontSize:'12px',
+            color:'red',
+        })
+        return;
+    }
+   var reg=str.test(userval);
+    if (!reg){
+        $('#yan').html('请输入合格的用户名')
+        $('#yan').css({
+            fontSize:'12px',
+            color:'red',
+        })
+        return
+    }
+
+    if (pasval.length > 8 || pasval.length < 6) {
+        $('#zheng').html('密码不合格')
+        $('#zheng').css({
+            fontSize:'12px',
+            color:'red',
+        })
+        return;
+    }
+    if (!reg){
+        $('#zheng').html('请输入合格的密码')
+        $('#zheng').css({
+            fontSize:'12px',
+            color:'red',
+        })
+       
+        return;
+    }
+    if(reg){
+      location.href='./index.html'
+    }
+
+   })
+}
+deng()
+    </script>
+</body>
+</html>

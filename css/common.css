@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.clear{
+    clear: both;
+}
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.w{
+    width: 1200px;
+    margin: 0 auto;
+
+}
